@@ -34,11 +34,12 @@ rockface_ret_t rockface_init_liveness_detector(rockface_handle_t handle);
  * 活体检测
  * 
  * @param handle [in] 已初始化的Handle（调用 @ref rockface_init_liveness_detector 函数初始化）
- * @param in_ir_img [in] 对齐后的人脸图像（需要特定红外摄像头，如需使用请与我们联系）
+ * @param in_ir_img [in] 输入图像（需要特定红外摄像头，如需使用请与我们联系）
+ * @param in_box [in] 人脸检测区域
  * @param out_liveness_result [out] 活体结果
  * @return @ref rockface_ret_t
  */
-rockface_ret_t rockface_liveness_detect(rockface_handle_t handle, rockface_image_t* in_ir_img, rockface_liveness_t *out_liveness_result);
+rockface_ret_t rockface_liveness_detect(rockface_handle_t handle, rockface_image_t* in_ir_img, rockface_rect_t *in_box, rockface_liveness_t *out_liveness_result);
 
 #ifdef __cplusplus
 } //extern "C"

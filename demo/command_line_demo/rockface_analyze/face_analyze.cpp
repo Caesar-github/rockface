@@ -27,11 +27,9 @@ int main(int argc, char** argv) {
     }
 
     const char *licence_path = argv[1];
-
-    // read image
     const char *img_path = argv[2];
 
-    /*************** Creat Handle ***************/
+    // init handle
     rockface_handle_t face_handle = rockface_create_handle();
 
     ret = rockface_set_licence(face_handle, licence_path);
@@ -47,23 +45,18 @@ int main(int argc, char** argv) {
     rockface_image_t input_image;
     rockface_image_read(img_path, &input_image, 1);
 
-    // create rockface_face_array_t for store result
+    // detect face
     rockface_det_array_t face_array;
     memset(&face_array, 0, sizeof(rockface_det_array_t));
 
-    // detect face
     ret = rockface_detect(face_handle, &input_image, &face_array);
     if (ret != ROCKFACE_RET_SUCCESS) {
         printf("rockface_face_detect error %d\n", ret);
         return -1;
     }
 
-    rockface_det_array_t tracked_face_array;
-    rockface_track(face_handle, &input_image, 1, &face_array, &tracked_face_array);
-    rockface_track(face_handle, &input_image, 1, &face_array, &tracked_face_array);
-
-    for (int i = 0; i < tracked_face_array.count; i++) {
-        rockface_det_t *det_face = &(tracked_face_array.face[i]);
+    for (int i = 0; i < face_array.count; i++) {
+        rockface_det_t *det_face = &(face_array.face[i]);
         // face align
         rockface_image_t aligned_img;
         memset(&aligned_img, 0, sizeof(rockface_image_t));
@@ -75,9 +68,8 @@ int main(int argc, char** argv) {
         // face attribute
         rockface_attribute_t face_attr;
         ret = rockface_attribute(face_handle, &aligned_img, &face_attr);
-        
+        // release aligned image first (avoid memory leak)
         rockface_image_release(&aligned_img);
-
         if (ret != ROCKFACE_RET_SUCCESS) {
             printf("error rockface_attribute %d\n", ret);
             return -1;
@@ -92,12 +84,12 @@ int main(int argc, char** argv) {
         // face angle
         rockface_angle_t face_angle;
         ret = rockface_angle(face_handle, &face_landmark, &face_angle);
-        printf("%d %d box=(%d %d %d %d) score=%f landmark_score=%f age=%d gender=%d angle=(%f %f %f)\n",
-            i, det_face->id, det_face->box.left, det_face->box.top, det_face->box.right, det_face->box.bottom, det_face->score, face_landmark.score,
+        // output result
+        printf("face index=%d box=(%d %d %d %d) score=%f landmark_score=%f age=%d gender=%d angle=(%f %f %f)\n",
+            i, det_face->box.left, det_face->box.top, det_face->box.right, det_face->box.bottom, det_face->score, face_landmark.score,
             face_attr.age, face_attr.gender,
             face_angle.pitch, face_angle.roll, face_angle.yaw);
     }
-
 
     // release image
     rockface_image_release(&input_image);

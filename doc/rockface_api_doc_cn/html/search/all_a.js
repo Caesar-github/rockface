@@ -45,7 +45,7 @@ var searchData=
   ['rockface_5flandmark5',['rockface_landmark5',['../rockface__analyze_8h.html#ab2ef19c95c27a8fdd62a52e5f9e27c5c',1,'rockface_analyze.h']]],
   ['rockface_5flandmark_5ft',['rockface_landmark_t',['../structrockface__landmark__t.html',1,'rockface_landmark_t'],['../rockface__type_8h.html#afb5bb3a9f5f6a5ab1a12976566b9fe85',1,'rockface_landmark_t():&#160;rockface_type.h']]],
   ['rockface_5fliveness_2eh',['rockface_liveness.h',['../rockface__liveness_8h.html',1,'']]],
-  ['rockface_5fliveness_5fdetect',['rockface_liveness_detect',['../rockface__liveness_8h.html#a23e662f8548603d1493f81791569011b',1,'rockface_liveness.h']]],
+  ['rockface_5fliveness_5fdetect',['rockface_liveness_detect',['../rockface__liveness_8h.html#a77f21a276c794b7341def000c5445514',1,'rockface_liveness.h']]],
   ['rockface_5fliveness_5ft',['rockface_liveness_t',['../structrockface__liveness__t.html',1,'rockface_liveness_t'],['../rockface__type_8h.html#a21e89b7ea18e9b20fb0e3347c1ef2186',1,'rockface_liveness_t():&#160;rockface_type.h']]],
   ['rockface_5fpixel_5fformat',['rockface_pixel_format',['../rockface__type_8h.html#aa0ba599cc7bda5fbba9021f0a6289bf0',1,'rockface_type.h']]],
   ['rockface_5fpixel_5fformat_5fbgr888',['ROCKFACE_PIXEL_FORMAT_BGR888',['../rockface__type_8h.html#aa0ba599cc7bda5fbba9021f0a6289bf0a0947287fbe9dbcf60c771a94fb0ae070',1,'rockface_type.h']]],

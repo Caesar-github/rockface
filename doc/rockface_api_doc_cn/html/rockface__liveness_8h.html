@@ -78,8 +78,8 @@ $(function() {
 函数</h2></td></tr>
 <tr class="memitem:aed5f3cd2e757bb458c2489acb1cc8777"><td class="memItemLeft" align="right" valign="top"><a class="el" href="rockface__type_8h.html#aea18e08829d7b19be892fcde6a75c025">rockface_ret_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rockface__liveness_8h.html#aed5f3cd2e757bb458c2489acb1cc8777">rockface_init_liveness_detector</a> (<a class="el" href="rockface__type_8h.html#afe8d9ff15ebb65abe41cb15a31518a62">rockface_handle_t</a> handle)</td></tr>
 <tr class="separator:aed5f3cd2e757bb458c2489acb1cc8777"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23e662f8548603d1493f81791569011b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="rockface__type_8h.html#aea18e08829d7b19be892fcde6a75c025">rockface_ret_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rockface__liveness_8h.html#a23e662f8548603d1493f81791569011b">rockface_liveness_detect</a> (<a class="el" href="rockface__type_8h.html#afe8d9ff15ebb65abe41cb15a31518a62">rockface_handle_t</a> handle, <a class="el" href="structrockface__image__t.html">rockface_image_t</a> *in_ir_img, <a class="el" href="structrockface__liveness__t.html">rockface_liveness_t</a> *out_liveness_result)</td></tr>
-<tr class="separator:a23e662f8548603d1493f81791569011b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77f21a276c794b7341def000c5445514"><td class="memItemLeft" align="right" valign="top"><a class="el" href="rockface__type_8h.html#aea18e08829d7b19be892fcde6a75c025">rockface_ret_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rockface__liveness_8h.html#a77f21a276c794b7341def000c5445514">rockface_liveness_detect</a> (<a class="el" href="rockface__type_8h.html#afe8d9ff15ebb65abe41cb15a31518a62">rockface_handle_t</a> handle, <a class="el" href="structrockface__image__t.html">rockface_image_t</a> *in_ir_img, <a class="el" href="structrockface__rect__t.html">rockface_rect_t</a> *in_box, <a class="el" href="structrockface__liveness__t.html">rockface_liveness_t</a> *out_liveness_result)</td></tr>
+<tr class="separator:a77f21a276c794b7341def000c5445514"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">函数说明</h2>
 <a id="aed5f3cd2e757bb458c2489acb1cc8777"></a>
@@ -108,8 +108,8 @@ $(function() {
 
 </div>
 </div>
-<a id="a23e662f8548603d1493f81791569011b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a23e662f8548603d1493f81791569011b">&#9670;&nbsp;</a></span>rockface_liveness_detect()</h2>
+<a id="a77f21a276c794b7341def000c5445514"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77f21a276c794b7341def000c5445514">&#9670;&nbsp;</a></span>rockface_liveness_detect()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -129,6 +129,12 @@ $(function() {
         <tr>
           <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="structrockface__rect__t.html">rockface_rect_t</a> *&#160;</td>
+          <td class="paramname"><em>in_box</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype"><a class="el" href="structrockface__liveness__t.html">rockface_liveness_t</a> *&#160;</td>
           <td class="paramname"><em>out_liveness_result</em>&#160;</td>
         </tr>
@@ -143,7 +149,8 @@ $(function() {
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">handle</td><td>[in] 已初始化的Handle（调用 <a class="el" href="rockface__liveness_8h.html#aed5f3cd2e757bb458c2489acb1cc8777">rockface_init_liveness_detector</a> 函数初始化） </td></tr>
-    <tr><td class="paramname">in_ir_img</td><td>[in] 对齐后的人脸图像（需要特定红外摄像头，如需使用请与我们联系） </td></tr>
+    <tr><td class="paramname">in_ir_img</td><td>[in] 输入图像（需要特定红外摄像头，如需使用请与我们联系） </td></tr>
+    <tr><td class="paramname">in_box</td><td>[in] 人脸检测区域 </td></tr>
     <tr><td class="paramname">out_liveness_result</td><td>[out] 活体结果 </td></tr>
   </table>
   </dd>

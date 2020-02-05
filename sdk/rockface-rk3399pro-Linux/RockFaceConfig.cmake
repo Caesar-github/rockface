@@ -7,9 +7,14 @@ if (CMAKE_SYSTEM_NAME MATCHES "Android")
         ${CMAKE_CURRENT_LIST_DIR}/${CMAKE_ANDROID_ARCH_ABI}/librockface.so
     )
 else ()
+    if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+        set (TARGET_LIB_ARCH lib64)
+    else()
+        set (TARGET_LIB_ARCH lib)
+    endif()
     set(RockFace_LIBS
-        ${CMAKE_CURRENT_LIST_DIR}/lib64/librknn_api.so
-        ${CMAKE_CURRENT_LIST_DIR}/lib64/librockface.so
+        ${CMAKE_CURRENT_LIST_DIR}/${TARGET_LIB_ARCH}/librknn_api.so
+        ${CMAKE_CURRENT_LIST_DIR}/${TARGET_LIB_ARCH}/librockface.so
     )
 endif()
 
