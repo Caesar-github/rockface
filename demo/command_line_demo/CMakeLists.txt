@@ -26,7 +26,7 @@ set(CMAKE_INSTALL_RPATH "$ORIGIN/../lib")
 add_subdirectory(rockface_analyze)
 add_subdirectory(rockface_recognition_1v1)
 add_subdirectory(rockface_recognition_1vn)
-
+add_subdirectory(rockface_liveness)
 
 install(PROGRAMS ${RockFace_LIBS} DESTINATION lib)
 install(PROGRAMS ${RockFace_DATA} DESTINATION lib)

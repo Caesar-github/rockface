@@ -121,7 +121,7 @@ int main(int argc, char** argv) {
 
     run_face_liveness(face_handle, &input_image, &out_result);
 
-    printf("real_score: %f fake_score: %f \n", out_result.real_score, out_result.fake_score);
+    printf("real_score: %f\n", out_result.real_score);
 
     // release image
     rockface_image_release(&input_image);
