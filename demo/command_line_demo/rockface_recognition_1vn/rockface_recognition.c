@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <string.h>
 #include "rockface_recognition.h"
 
 static rockface_det_t *get_max_face(rockface_det_array_t *face_array) {
