@@ -31,6 +31,15 @@ rockface_ret_t rockface_init_detector(rockface_handle_t handle);
 
 
 /**
+ * 初始化人形检测器
+ * 
+ * @param handle 需要初始化的Handle
+ * @return @ref rockface_ret_t 
+ */
+rockface_ret_t rockface_init_person_detector(rockface_handle_t handle);
+
+
+/**
  * 人脸检测
  * 
  * @param handle [in] 已初始化的Handle（调用 @ref rockface_init_detector 函数初始化）
@@ -39,6 +48,17 @@ rockface_ret_t rockface_init_detector(rockface_handle_t handle);
  * @return @ref rockface_ret_t
  */
 rockface_ret_t rockface_detect(rockface_handle_t handle, rockface_image_t *in_img, rockface_det_array_t *face_array);
+
+
+/**
+ * 人形检测
+ * 
+ * @param handle [in] 已初始化的Handle（调用 @ref rockface_init_person_detector 函数初始化）
+ * @param in_img [in] 输入图像
+ * @param face_array [out] 人形检测结果
+ * @return @ref rockface_ret_t
+ */
+rockface_ret_t rockface_person_detect(rockface_handle_t handle, rockface_image_t *in_img, rockface_det_person_array_t *person_array);
 
 
 /**
