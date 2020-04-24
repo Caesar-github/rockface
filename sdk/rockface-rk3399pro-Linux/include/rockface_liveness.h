@@ -24,7 +24,7 @@ extern "C" {
 /**
  * 初始化活体检测器
  * 
- * @param handle 需要初始化的Handle
+ * @param handle [in] 需要初始化的Handle
  * @return @ref rockface_ret_t 
  */
 rockface_ret_t rockface_init_liveness_detector(rockface_handle_t handle);

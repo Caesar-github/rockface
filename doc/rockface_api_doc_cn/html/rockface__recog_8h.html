@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>RockFace: /home/yhc/workspace/lion/rockx/RockX/rockface/include/rockface_recog.h 文件参考</title>
+<title>RockFace: /home/yhc/workspace/lion/rockx/RockFace/rockface/include/rockface_recog.h 文件参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -137,10 +137,10 @@ $(function() {
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">handle</td><td>[in] Handle，如果该Handle之前有初始化过人脸库，需要先调用（ <a class="el" href="rockface__recog_8h.html#abd68f6ec238d993be719a32233e2dc8b">rockface_face_library_release</a> ）释放后再初始化 </td></tr>
-    <tr><td class="paramname">face_array</td><td>[in] 人脸数组，数组元素可以是用户自定义的结构体 </td></tr>
+    <tr><td class="paramname">face_array</td><td>[in] 人脸数组，数组元素可以是用户自定义的结构体，但必须包含一个rockface_feature_t类型的结构体成员（注意，初始化后该数组不能被释放） </td></tr>
     <tr><td class="paramname">num</td><td>[in] 人脸数组数量 </td></tr>
     <tr><td class="paramname">face_data_size</td><td>[in] 用户定义结构体的大小 </td></tr>
-    <tr><td class="paramname">feature_offset</td><td>[in] 用户定义结构体中 <a class="el" href="structrockface__feature__t.html">rockface_feature_t</a> 的偏移位置 </td></tr>
+    <tr><td class="paramname">feature_offset</td><td>[in] 用户定义结构体中 <a class="el" href="structrockface__feature__t.html">rockface_feature_t</a> 成员的偏移位置 </td></tr>
   </table>
   </dd>
 </dl>
@@ -331,7 +331,7 @@ $(function() {
 <p>初始化人脸识别器</p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle</td><td>需要初始化的Handle </td></tr>
+    <tr><td class="paramname">handle</td><td>[in] 需要初始化的Handle </td></tr>
   </table>
   </dd>
 </dl>

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['rockface_5falign',['rockface_align',['../rockface__detect_8h.html#a0bc5e2ac555abdc1ace20ac36aaa1b74',1,'rockface_detect.h']]],
+  ['rockface_5falign',['rockface_align',['../rockface__analyze_8h.html#a0bc5e2ac555abdc1ace20ac36aaa1b74',1,'rockface_analyze.h']]],
   ['rockface_5fangle',['rockface_angle',['../rockface__analyze_8h.html#ab1952e34b3491e7e934dd16c8fc8d8b8',1,'rockface_analyze.h']]],
   ['rockface_5fattribute',['rockface_attribute',['../rockface__analyze_8h.html#a6eeb8dc38044d45bcdc7eefd2f36936a',1,'rockface_analyze.h']]],
   ['rockface_5fcreate_5fhandle',['rockface_create_handle',['../rockface_8h.html#a3086818958015d46c9074f010dbad520',1,'rockface.h']]],
@@ -18,11 +18,14 @@ var searchData=
   ['rockface_5fimage_5fwrite_5fraw',['rockface_image_write_raw',['../rockface__image_8h.html#a9342be007cebb592a7c095386568e558',1,'rockface_image.h']]],
   ['rockface_5finit_5fanalyzer',['rockface_init_analyzer',['../rockface__analyze_8h.html#af42582a2cebabaf62537f5f621f2f6e4',1,'rockface_analyze.h']]],
   ['rockface_5finit_5fdetector',['rockface_init_detector',['../rockface__detect_8h.html#a6876d6f3722139a5a7581a6c6fa2c789',1,'rockface_detect.h']]],
+  ['rockface_5finit_5flandmark',['rockface_init_landmark',['../rockface__analyze_8h.html#a58c7172bd43c4eda584d69cc93850c21',1,'rockface_analyze.h']]],
   ['rockface_5finit_5fliveness_5fdetector',['rockface_init_liveness_detector',['../rockface__liveness_8h.html#aed5f3cd2e757bb458c2489acb1cc8777',1,'rockface_liveness.h']]],
+  ['rockface_5finit_5fperson_5fdetector',['rockface_init_person_detector',['../rockface__detect_8h.html#ac2f41e634f15574a5b6f838bb814a07a',1,'rockface_detect.h']]],
   ['rockface_5finit_5frecognizer',['rockface_init_recognizer',['../rockface__recog_8h.html#a92973347d9bcbb6461f3af47832995a4',1,'rockface_recog.h']]],
   ['rockface_5flandmark',['rockface_landmark',['../rockface__analyze_8h.html#a5402a8529891ad4369701ea2ed124c58',1,'rockface_analyze.h']]],
   ['rockface_5flandmark5',['rockface_landmark5',['../rockface__analyze_8h.html#ab2ef19c95c27a8fdd62a52e5f9e27c5c',1,'rockface_analyze.h']]],
   ['rockface_5fliveness_5fdetect',['rockface_liveness_detect',['../rockface__liveness_8h.html#a77f21a276c794b7341def000c5445514',1,'rockface_liveness.h']]],
+  ['rockface_5fperson_5fdetect',['rockface_person_detect',['../rockface__detect_8h.html#aa03c2935fd253d80f4ed82b223de024e',1,'rockface_detect.h']]],
   ['rockface_5frelease_5fhandle',['rockface_release_handle',['../rockface_8h.html#a95825bcb7f48d6cf9481fe55c7bca904',1,'rockface.h']]],
   ['rockface_5fset_5fdata_5fpath',['rockface_set_data_path',['../rockface_8h.html#a1d0a1624fdcc87fbf1ade058b8775d63',1,'rockface.h']]],
   ['rockface_5fset_5flicence',['rockface_set_licence',['../rockface_8h.html#a315e2633949f5585a04cb7baa2306b2e',1,'rockface.h']]],

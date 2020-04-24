@@ -3,6 +3,7 @@ var searchData=
   ['rockface_5fangle_5ft',['rockface_angle_t',['../structrockface__angle__t.html',1,'']]],
   ['rockface_5fattribute_5ft',['rockface_attribute_t',['../structrockface__attribute__t.html',1,'']]],
   ['rockface_5fdet_5farray_5ft',['rockface_det_array_t',['../structrockface__det__array__t.html',1,'']]],
+  ['rockface_5fdet_5fperson_5farray_5ft',['rockface_det_person_array_t',['../structrockface__det__person__array__t.html',1,'']]],
   ['rockface_5fdet_5ft',['rockface_det_t',['../structrockface__det__t.html',1,'']]],
   ['rockface_5ffeature_5ft',['rockface_feature_t',['../structrockface__feature__t.html',1,'']]],
   ['rockface_5fimage_5ft',['rockface_image_t',['../structrockface__image__t.html',1,'']]],

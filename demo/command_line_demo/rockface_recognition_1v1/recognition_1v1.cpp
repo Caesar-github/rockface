@@ -1,6 +1,6 @@
 /****************************************************************************
 *
-*    Copyright (c) 2017 - 2019 by Rockchip Corp.  All rights reserved.
+*    Copyright (c) 2017 - 2020 by Rockchip Corp.  All rights reserved.
 *
 *    The material in this file is confidential and contains trade secrets
 *    of Rockchip Corporation. This is proprietary information owned by
@@ -104,28 +104,44 @@ error:
 int main(int argc, char** argv) {
 
     rockface_ret_t ret;
-    struct timeval tv;
 
-    if( argc != 4 ){
-        printf("\nUsage: recognition_1v1 <licence file> <path_to_person1_image> <path_to_person2_image>\n");
+    char *licence_path = NULL;
+    char *img_path1 = NULL;
+    char *img_path2 = NULL;
+
+    if (argc != 3 && argc != 4) {
+        printf("\nUsage:\n");
+        printf("\trecognition_1v1 <image file 1> <image file 2>\n");
+        printf("or\n");
+        printf("\trecognition_1v1 <image file 1> <image file 2> <licence file>\n");
         return -1;
     }
 
-    const char *licence_path = argv[1];
+    img_path1 = argv[1];
+    img_path2 = argv[2];
 
-    // read image
-    const char *img_path1 = argv[2];
-    const char *img_path2 = argv[3];
+    printf("image path1: %s\n", img_path1);
+    printf("image path2: %s\n", img_path2);
+
+    if (argc == 4) {
+        licence_path = argv[1];
+        printf("licence path: %s\n", licence_path);
+    }
 
     rockface_handle_t face_handle = rockface_create_handle();
 
-    ret = rockface_set_licence(face_handle, licence_path);
-    if (ret < 0) {
-        printf("Error: authorization error %d!", ret);
-        return ret;
+    if (licence_path != NULL) {
+        ret = rockface_set_licence(face_handle, licence_path);
+        if (ret != ROCKFACE_RET_SUCCESS) {
+            printf("ERROR: authorization fail %d!\n", ret);
+            return ret;
+        }
+    } else {
+        printf("WARNING: can only try for a while without authorization\n");
     }
 
     ret = rockface_init_detector(face_handle);
+    ret = rockface_init_landmark(face_handle, 5);
     ret = rockface_init_recognizer(face_handle);
 
     rockface_feature_t out_feature1;

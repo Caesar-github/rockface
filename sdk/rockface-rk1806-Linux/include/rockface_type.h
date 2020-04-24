@@ -171,6 +171,14 @@ typedef struct rockface_det_array_t {
     rockface_det_t face[128];      ///< 人脸数组
 } rockface_det_array_t;
 
+/**
+ * @brief 表示检测到人形的数组
+ */
+typedef struct rockface_det_person_array_t {
+    int count;                       ///< 数组大小 (0 <= count < 128)
+    rockface_det_t person[128];      ///< 人形数组
+} rockface_det_person_array_t;
+
 
 #ifdef __cplusplus
 } //extern "C"

@@ -24,18 +24,27 @@ extern "C" {
 /**
  * 初始化人脸分析器
  * 
- * @param handle 需要初始化的Handle
+ * @param handle [in] 需要初始化的Handle
  * @return @ref rockface_ret_t 
  */
 rockface_ret_t rockface_init_analyzer(rockface_handle_t handle);
 
 /**
- * 检测人脸关键点（68点）
+ * 初始化人脸关键点检测（对齐/关键点检测接口需要）
+ *
+ * @param handle [in] 需要初始化的Handle
+ * @param landmark_count [in] 支持传入5/68
+ * @return @ref rockface_ret_t
+ */
+rockface_ret_t rockface_init_landmark(rockface_handle_t handle, int landmark_count);
+
+/**
+ * 检测人脸关键点（68点），结果可用于计算人脸角度
  *
  * 68关键点如图1所示：
  * @image html res/face_landmark68.png Figure 1 人脸68关键点示意图
  *
- * @param handle [in] 已初始化的Handle（调用 @ref rockface_init_analyzer 函数初始化）
+ * @param handle [in] 已初始化的Handle（调用 @ref rockface_init_landmark(handle, 68) 函数初始化）
  * @param in_img [in] 输入图像
  * @param in_box [in] 人脸区域
  * @param out_landmark [out] 人脸关键点结果
@@ -47,7 +56,7 @@ rockface_ret_t rockface_landmark(rockface_handle_t handle, rockface_image_t* in_
 /**
  * 检测人脸关键点（5点），结果可用于计算人脸角度/人脸对齐
  *
- * @param handle [in] 已初始化的Handle（调用 @ref rockface_init_detector 函数初始化）
+ * @param handle [in] 已初始化的Handle（调用 @ref rockface_init_landmark(handle, 5) 函数初始化）
  * @param in_img [in] 输入图像
  * @param in_box [in] 人脸区域
  * @param out_landmark [out] 人脸关键点结果
@@ -74,6 +83,18 @@ rockface_ret_t rockface_angle(rockface_handle_t handle, rockface_landmark_t *in_
  * @return @ref rockface_ret_t
  */
 rockface_ret_t rockface_attribute(rockface_handle_t handle, rockface_image_t *in_img, rockface_attribute_t *attr);
+
+/**
+ * 人脸矫正对齐
+ *
+ * @param handle [in] 已初始化的Handle（调用 @ref rockface_init_landmark(handle, 5) 函数初始化）
+ * @param in_img [in] 输入图像（需要原始图像）
+ * @param in_box [in] 人脸区域
+ * @param in_landmark [in] 人脸关键点（5点）。如果为NULL，函数内部会自己获取
+ * @param out_img [out] 对齐后的人脸图像（用完后需要调用 @ref rockface_image_release 释放）
+ * @return @ref rockface_ret_t
+ */
+rockface_ret_t rockface_align(rockface_handle_t handle, rockface_image_t *in_img, rockface_rect_t *in_box, rockface_landmark_t *in_landmark, rockface_image_t *out_img);
 
 
 #ifdef __cplusplus

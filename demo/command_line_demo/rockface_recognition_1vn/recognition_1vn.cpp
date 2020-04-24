@@ -1,6 +1,6 @@
 /****************************************************************************
 *
-*    Copyright (c) 2017 - 2019 by Rockchip Corp.  All rights reserved.
+*    Copyright (c) 2017 - 2020 by Rockchip Corp.  All rights reserved.
 *
 *    The material in this file is confidential and contains trade secrets
 *    of Rockchip Corporation. This is proprietary information owned by
@@ -65,35 +65,50 @@ int main(int argc, char** argv) {
 
     rockface_ret_t ret;
     struct timeval tv;
+    char *licence_path = NULL;
+    char *img_path = NULL;
+    char *db_path = NULL;
 
-    if( argc != 4 ){
-        printf("\nUsage: recognition_1vn <licence file> <path_to_image> <path_to_database_path>\n");
+    if(argc != 3 && argc != 4 ){
+        printf("\nUsage:\n");
+        printf("\trecognition_1vn <image path> <database path>\n");
+        printf("or\n");
+        printf("\trecognition_1vn <image path> <database path> <licence file>\n");
         return -1;
     }
 
-    const char *licence_path = argv[1];
+    img_path = argv[1];
+    db_path = argv[2];
+    printf("image path: %s\n", img_path);
+    printf("create database path: %s\n", db_path);
 
-    // read image
-    const char *img_path = argv[2];
-    const char *db_path = argv[3];
+    if (argc == 4) {
+        licence_path = argv[3];
+        printf("licence path: %s\n", licence_path);
+    }
 
-    /*************** Creat Handle ***************/
     rockface_handle_t face_handle = rockface_create_handle();
     rockface_feature_t face_feature;
     rockface_image_t in_img;
     rockface_search_result_t search_result;
     rockface_ret_t rockface_ret;
 
-    ret = rockface_set_licence(face_handle, licence_path);
-    if (ret < 0) {
-        printf("Error: authorization error %d!", ret);
-        return ret;
+    if (licence_path != NULL) {
+        ret = rockface_set_licence(face_handle, licence_path);
+        if (ret != ROCKFACE_RET_SUCCESS) {
+            printf("ERROR: authorization fail %d!\n", ret);
+            return ret;
+        }
+    } else {
+        printf("WARNING: can only try for a while without authorization\n");
     }
 
+    // init rockface handle
     ret = rockface_init_detector(face_handle);
+    ret = rockface_init_landmark(face_handle, 5);
     ret = rockface_init_recognizer(face_handle);
 
-    //
+    // load database
     int db_ret = get_face_library(face_handle, db_path);
     if (db_ret != 0) {
         printf("get face library error\n");

@@ -1,6 +1,6 @@
 /****************************************************************************
 *
-*    Copyright (c) 2017 - 2019 by Rockchip Corp.  All rights reserved.
+*    Copyright (c) 2017 - 2020 by Rockchip Corp.  All rights reserved.
 *
 *    The material in this file is confidential and contains trade secrets
 *    of Rockchip Corporation. This is proprietary information owned by
@@ -103,29 +103,44 @@ error:
 int main(int argc, char** argv) {
 
     rockface_ret_t ret;
-    struct timeval tv;
+    char *img_dir_path = NULL;
+    char *db_path = NULL;
+    char *licence_path = NULL;
 
-    if( argc != 4 ){
-        printf("\nUsage: import_face_library <licence file> <path_to_image_dir> <path_to_database_path>\n");
+    if(argc != 3 && argc != 4) {
+        printf("\nUsage:\n");
+        printf("\timport_face_library <image dir> <database path>\n");
+        printf("or\n");
+        printf("\timport_face_library <image dir> <database path> <licence file>\n");
         return -1;
     }
 
-    const char *licence_path = argv[1];
-
     // read image
-    const char *img_dir_path = argv[2];
-    const char *db_path = argv[3];
+    img_dir_path = argv[1];
+    db_path = argv[2];
 
-    /*************** Creat Handle ***************/
+    printf("import image dir: %s\n", img_dir_path);
+    printf("create database path: %s\n", db_path);
+
+    if (argc == 4) {
+        licence_path = argv[3];
+        printf("licence path: %s\n", licence_path);
+    }
+
     rockface_handle_t face_handle = rockface_create_handle();
 
-    ret = rockface_set_licence(face_handle, licence_path);
-    if (ret < 0) {
-        printf("Error: authorization error %d!", ret);
-        return ret;
+    if (licence_path != NULL) {
+        ret = rockface_set_licence(face_handle, licence_path);
+        if (ret < 0) {
+            printf("Error: authorization error %d!", ret);
+            return ret;
+        }
+    } else {
+        printf("Warning: can only try for a while without authorization");
     }
 
     ret = rockface_init_detector(face_handle);
+    ret = rockface_init_landmark(face_handle, 5);
     ret = rockface_init_recognizer(face_handle);
 
     import_face_library(face_handle, img_dir_path, db_path);

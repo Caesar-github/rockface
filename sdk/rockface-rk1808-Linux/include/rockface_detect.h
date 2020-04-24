@@ -24,10 +24,19 @@ extern "C" {
 /**
  * 初始化人脸检测器
  * 
- * @param handle 需要初始化的Handle
+ * @param handle [in] 需要初始化的Handle
  * @return @ref rockface_ret_t 
  */
 rockface_ret_t rockface_init_detector(rockface_handle_t handle);
+
+
+/**
+ * 初始化人形检测器
+ * 
+ * @param handle 需要初始化的Handle
+ * @return @ref rockface_ret_t 
+ */
+rockface_ret_t rockface_init_person_detector(rockface_handle_t handle);
 
 
 /**
@@ -42,16 +51,14 @@ rockface_ret_t rockface_detect(rockface_handle_t handle, rockface_image_t *in_im
 
 
 /**
- * 人脸矫正对齐
+ * 人形检测
  * 
- * @param handle [in] 已初始化的Handle（调用 @ref rockface_init_detector 函数初始化）
- * @param in_img [in] 输入图像（需要原始图像）
- * @param in_box [in] 人脸区域
- * @param in_landmark [in] 人脸关键点（5点）。如果为NULL，函数内部会自己获取
- * @param out_img [out] 对齐后的人脸图像（用完后需要调用 @ref rockface_image_release 释放）
+ * @param handle [in] 已初始化的Handle（调用 @ref rockface_init_person_detector 函数初始化）
+ * @param in_img [in] 输入图像
+ * @param face_array [out] 人形检测结果
  * @return @ref rockface_ret_t
  */
-rockface_ret_t rockface_align(rockface_handle_t handle, rockface_image_t *in_img, rockface_rect_t *in_box, rockface_landmark_t *in_landmark, rockface_image_t *out_img);
+rockface_ret_t rockface_person_detect(rockface_handle_t handle, rockface_image_t *in_img, rockface_det_person_array_t *person_array);
 
 
 /**

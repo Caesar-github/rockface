@@ -1,6 +1,6 @@
 /****************************************************************************
 *
-*    Copyright (c) 2017 - 2019 by Rockchip Corp.  All rights reserved.
+*    Copyright (c) 2017 - 2020 by Rockchip Corp.  All rights reserved.
 *
 *    The material in this file is confidential and contains trade secrets
 *    of Rockchip Corporation. This is proprietary information owned by
@@ -90,22 +90,36 @@ error:
 int main(int argc, char** argv) {
 
     rockface_ret_t ret;
-    struct timeval tv;
 
-    if( argc != 3 ){
-        printf("\nUsage: face_liveness <licence file> <path_to_image>\n");
+    char *licence_path = NULL;
+    char *img_path = NULL;
+
+    if (argc != 2 && argc != 3) {
+        printf("\nUsage:\n");
+        printf("\tface_liveness <image file>\n");
+        printf("or\n");
+        printf("\tface_liveness <image file> <licence file>\n");
         return -1;
     }
 
-    const char *licence_path = argv[1];
-    const char *img_path = argv[2];
+    img_path = argv[1];
+    printf("image path: %s\n", img_path);
+
+    if (argc == 3) {
+        licence_path = argv[1];
+        printf("licence path: %s\n", licence_path);
+    }
 
     rockface_handle_t face_handle = rockface_create_handle();
 
-    ret = rockface_set_licence(face_handle, licence_path);
-    if (ret < 0) {
-        printf("Error: authorization error %d!", ret);
-        return ret;
+    if (licence_path != NULL) {
+        ret = rockface_set_licence(face_handle, licence_path);
+        if (ret != ROCKFACE_RET_SUCCESS) {
+            printf("ERROR: authorization fail %d!\n", ret);
+            return ret;
+        }
+    } else {
+        printf("WARNING: can only try for a while without authorization\n");
     }
 
     ret = rockface_init_detector(face_handle);
@@ -113,7 +127,6 @@ int main(int argc, char** argv) {
 
     // read image
     rockface_image_t input_image;
-    printf("img_path=%s\n", img_path);
     rockface_image_read(img_path, &input_image, 0);
 
     rockface_liveness_t out_result;

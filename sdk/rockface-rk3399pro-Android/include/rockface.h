@@ -137,7 +137,7 @@ rockface_handle_t rockface_create_handle();
 /**
  * 释放Handle
  * 
- * @param handle 需要释放的Handle
+ * @param handle [in] 需要释放的Handle
  * @return @ref rockface_ret_t 
  */
 rockface_ret_t rockface_release_handle(rockface_handle_t handle);
@@ -145,8 +145,8 @@ rockface_ret_t rockface_release_handle(rockface_handle_t handle);
 /**
  * 授权
  *
- * @param handle 需要授权的handle
- * @param lic_path 授权文件路径
+ * @param handle [in] 需要授权的handle
+ * @param lic_path [in] 授权文件路径
  * @return @ref rockface_ret_t
  */
 rockface_ret_t rockface_set_licence(rockface_handle_t handle, const char* lic_path);
@@ -154,8 +154,8 @@ rockface_ret_t rockface_set_licence(rockface_handle_t handle, const char* lic_pa
 /**
  * 设置数据文件路径（如果所有的data文件与librockface.so放在相同目录下，可以不需要设置）
  * 
- * @param handle 需要设置的Handle
- * @param data_path 数据文件的路径
+ * @param handle [in] 需要设置的Handle
+ * @param data_path [in] 数据文件的路径
  * @return @ref rockface_ret_t
  */
 rockface_ret_t rockface_set_data_path(rockface_handle_t handle, const char* data_path);
