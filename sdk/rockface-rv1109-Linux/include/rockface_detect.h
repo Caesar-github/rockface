@@ -15,11 +15,11 @@
 
 #include "rockface_type.h"
 #include "rockface_image.h"
+#include <stdbool.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 
 /**
  * 初始化人脸检测器
@@ -69,10 +69,11 @@ rockface_ret_t rockface_person_detect(rockface_handle_t handle, rockface_image_t
  * @param max_track_time [in] 最大跟踪时间（避免偶然漏检导致目标丢失）
  * @param in_track_objects [in] 人脸检测结果
  * @param out_track_objects [out] 已跟踪的人脸列表
+ * @param enable_autotrack [in] 是否启用自动跟踪，如果启用自动跟踪，则将使用CPU进行跟踪，不需要传入原始人脸坐标参数
  * @return @ref rockface_ret_t
  */
 rockface_ret_t rockface_track(rockface_handle_t handle, rockface_image_t *in_img, int max_track_time,
-        rockface_det_array_t* in_track_face, rockface_det_array_t* out_track_face);
+        rockface_det_array_t* in_track_face, rockface_det_array_t* out_track_face, bool enable_autotrack);
 
 
 #ifdef __cplusplus

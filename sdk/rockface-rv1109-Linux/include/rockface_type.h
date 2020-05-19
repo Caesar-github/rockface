@@ -77,6 +77,12 @@ typedef struct rockface_point_t {
     int y;      ///< Y坐标
 } rockface_point_t;
 
+typedef struct rockface_color_t {
+    uint8_t r;
+    uint8_t g;
+    uint8_t b;
+} rockface_color_t;
+
 /**
  * @brief 表示二维图像上人脸的矩形区域
  */

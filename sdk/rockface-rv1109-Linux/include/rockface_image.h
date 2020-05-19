@@ -74,6 +74,11 @@ rockface_ret_t rockface_image_convert(rockface_image_t *src, rockface_image_t *d
  */
 rockface_ret_t rockface_image_clarity(rockface_image_t *img, float *clarity);
 
+rockface_ret_t rockface_image_draw_rect(rockface_image_t *img, rockface_point_t pt1, rockface_point_t pt2,
+                                         rockface_color_t color, int thickness);
+rockface_ret_t rockface_image_draw_text(rockface_image_t *img, const char *text, rockface_point_t pt,
+                                         rockface_color_t color, int thickness);
+
 #ifdef __cplusplus
 } //extern "C"
 #endif

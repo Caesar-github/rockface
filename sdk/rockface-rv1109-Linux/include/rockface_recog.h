@@ -55,10 +55,10 @@ rockface_ret_t rockface_feature_compare(rockface_feature_t *in_feature1, rockfac
  * 初始化人脸库
  * 
  * @param handle [in] Handle，如果该Handle之前有初始化过人脸库，需要先调用（ @ref rockface_face_library_release ）释放后再初始化
- * @param face_array [in] 人脸数组，数组元素可以是用户自定义的结构体
+ * @param face_array [in] 人脸数组，数组元素可以是用户自定义的结构体，但必须包含一个rockface_feature_t类型的结构体成员（注意，初始化后该数组不能被释放）
  * @param num [in] 人脸数组数量
  * @param face_data_size [in] 用户定义结构体的大小
- * @param feature_offset [in] 用户定义结构体中 @ref rockface_feature_t 的偏移位置
+ * @param feature_offset [in] 用户定义结构体中 @ref rockface_feature_t 成员的偏移位置
  * @return @ref rockface_ret_t 
  */
 rockface_ret_t rockface_face_library_init(rockface_handle_t handle, void *face_array, int num, size_t face_data_size, size_t feature_offset);
