@@ -54,6 +54,7 @@ typedef enum {
     ROCKFACE_PIXEL_FORMAT_YUV422P_YV16,    ///< YUV422P YV16: YYYYYYYYVVVVUUUU
     ROCKFACE_PIXEL_FORMAT_YUV422SP_NV16,   ///< YUV422SP NV16: YYYYYYYYUVUVUVUV
     ROCKFACE_PIXEL_FORMAT_YUV422SP_NV61,   ///< YUV422SP NV61: YYYYYYYYVUVUVUVU
+    ROCKFACE_PIXEL_FORMAT_GRAY16,          ///< Gray16
     ROCKFACE_PIXEL_FORMAT_MAX,
 } rockface_pixel_format;
 
@@ -70,12 +71,40 @@ typedef enum {
 } rockface_image_transform_mode;
 
 /**
+ * @brief 人脸图像曝光
+ */
+typedef enum {
+    ROCKFACE_IMAGE_ILLUMINATION_NORM = 0,
+    ROCKFACE_IMAGE_ILLUMINATION_UNEVEN = 1,
+    ROCKFACE_IMAGE_OVER_EXPOSURE = 2,
+    ROCKFACE_IMAGE_UNDER_EXPOSURE = 3,
+} rockface_image_illumination_t;
+
+/**
+ * @brief 人脸图像对比度
+ */
+typedef enum {
+    ROCKFACE_IMAGE_CONTRAST_NORM = 0,
+    ROCKFACE_IMAGE_CONTRAST_WEAK = 1,
+    ROCKFACE_IMAGE_CONTRAST_STRONG = 2,
+} rockface_image_contrast_t;
+
+/**
  * @brief 表示二维图像上点的坐标
  */
 typedef struct rockface_point_t {
     int x;      ///< X坐标
     int y;      ///< Y坐标
 } rockface_point_t;
+
+/**
+ * @brief 颜色
+ */
+typedef struct rockface_color_t {
+    uint8_t r;
+    uint8_t g;
+    uint8_t b;
+} rockface_color_t;
 
 /**
  * @brief 表示二维图像上人脸的矩形区域
