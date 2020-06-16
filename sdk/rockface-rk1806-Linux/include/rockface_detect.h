@@ -29,6 +29,14 @@ extern "C" {
  */
 rockface_ret_t rockface_init_detector(rockface_handle_t handle);
 
+/**
+ * 初始化人脸检测器，支持选择不同人脸检测模型
+ *
+ * @param handle [in] 需要初始化的Handle
+ * @param version [in] 需要初始化的人脸检测模型版本
+ * @return @ref rockface_ret_t
+ */
+rockface_ret_t rockface_init_detector2(rockface_handle_t handle, int version);
 
 /**
  * 初始化人形检测器

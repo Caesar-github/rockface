@@ -29,6 +29,14 @@ extern "C" {
  */
 rockface_ret_t rockface_init_detector(rockface_handle_t handle);
 
+/**
+ * 初始化人脸检测器，支持选择不同人脸检测模型
+ *
+ * @param handle [in] 需要初始化的Handle
+ * @param version [in] 需要初始化的人脸检测模型版本
+ * @return @ref rockface_ret_t
+ */
+rockface_ret_t rockface_init_detector2(rockface_handle_t handle, int version);
 
 /**
  * 初始化人形检测器
@@ -73,6 +81,7 @@ rockface_ret_t rockface_person_detect(rockface_handle_t handle, rockface_image_t
  */
 rockface_ret_t rockface_track(rockface_handle_t handle, rockface_image_t *in_img, int max_track_time,
         rockface_det_array_t* in_track_face, rockface_det_array_t* out_track_face);
+
 
 /**
  * 人脸跟踪，在连续视频帧时使用，会对当前场景的检测的结果分配跟踪ID，连续帧下对同一目标保持相同的跟踪ID

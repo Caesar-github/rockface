@@ -30,16 +30,16 @@ extern "C" {
 rockface_ret_t rockface_init_analyzer(rockface_handle_t handle);
 
 /**
- * 初始化人脸关键点检测（对齐/关键点检测接口需要）
- *
- * @param handle [in] 需要初始化的Handle
- * @param landmark_count [in] 支持传入5/68
- * @return @ref rockface_ret_t
+ * 初始化人脸关键点检测
+ * 
+ * @param handle 需要初始化的Handle
+ * @param landmark_count 人脸关键点数（支持5/68/98点）
+ * @return @ref rockface_ret_t 
  */
 rockface_ret_t rockface_init_landmark(rockface_handle_t handle, int landmark_count);
 
 /**
- * 检测人脸关键点（68点），结果可用于计算人脸角度
+ * 检测人脸关键点（68点）
  *
  * 68关键点如图1所示：
  * @image html res/face_landmark68.png Figure 1 人脸68关键点示意图
