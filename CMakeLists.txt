@@ -14,7 +14,7 @@ endif()
 if(${COMPILE_PLATFORM} STREQUAL "rv1109-Linux")
 
 if(${WITH_FACE_DETECTION})
-    install(FILES ${ROCKFACE_DATA_DIR}/face_detection.data DESTINATION lib)
+    install(FILES ${ROCKFACE_DATA_DIR}/face_detection_v3_large.data DESTINATION lib)
 endif()
 
 if(${WITH_FACE_RECOGNITION})
@@ -23,7 +23,6 @@ endif()
 
 if(${WITH_FACE_LANDMARK})
     install(FILES ${ROCKFACE_DATA_DIR}/face_landmark5.data DESTINATION lib)
-    install(FILES ${ROCKFACE_DATA_DIR}/face_landmarks68.data DESTINATION lib)
 endif()
 
 if(${WITH_FACE_ATTRIBUTE})
