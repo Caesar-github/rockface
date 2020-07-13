@@ -96,6 +96,26 @@ rockface_ret_t rockface_attribute(rockface_handle_t handle, rockface_image_t *in
  */
 rockface_ret_t rockface_align(rockface_handle_t handle, rockface_image_t *in_img, rockface_rect_t *in_box, rockface_landmark_t *in_landmark, rockface_image_t *out_img);
 
+/**
+ * 人脸矫正对齐2
+ *
+ * @param handle [in] 已初始化的Handle（调用 @ref rockface_init_landmark(handle, 5) 函数初始化）
+ * @param in_img [in] 输入图像（需要原始图像）
+ * @param in_box [in] 人脸区域
+ * @param in_landmark [in] 人脸关键点（5点）。如果为NULL，函数内部会自己获取
+ * @param out_img [out] 对齐后的人脸图像（用完后需要调用 @ref rockface_image_release 释放）
+ * @return @ref rockface_ret_t
+ */
+rockface_ret_t rockface_align2(rockface_handle_t handle, rockface_image_t *in_img, rockface_rect_t *in_box, rockface_landmark_t *in_landmark, rockface_image_t *out_img);
+
+/**
+ * 人脸过曝检测
+ * 
+ * @param in_face_img [in] 输入对齐人脸图像
+ * @param out_isOverexpose [out] 输出是否过曝，1为过曝，0为非过曝
+ * @return @ref rockface_ret_t
+ */
+rockface_ret_t rockface_overexpose_detect(rockface_image_t *in_face_img , int* out_isOverexpose );
 
 #ifdef __cplusplus
 } //extern "C"
