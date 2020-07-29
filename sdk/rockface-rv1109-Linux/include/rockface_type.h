@@ -126,6 +126,7 @@ typedef struct rockface_image_t {
     rockface_pixel_format pixel_format;     ///< 图像像素格式 (@ref rockface_pixel_format)
     uint32_t width;                         ///< 图像宽
     uint32_t height;                        ///< 图像高
+    float original_ratio;                   ///< Image original ratio of width & height, default is 1
 } rockface_image_t;
 
 /**

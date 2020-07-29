@@ -18,8 +18,8 @@ else ()
     )
 endif()
 
-if(EXISTS "${CMAKE_CURRENT_LIST_DIR}/../rockface-data-rv1109")
-    file(GLOB ROCKFACE_DATA_FILES "${CMAKE_CURRENT_LIST_DIR}/../rockface-data-rv1109/*")
+if(EXISTS "${CMAKE_CURRENT_LIST_DIR}/../rockface-data")
+    file(GLOB ROCKFACE_DATA_FILES "${CMAKE_CURRENT_LIST_DIR}/../rockface-data/*")
 endif()
 
 set(RockFace_DATA ${ROCKFACE_DATA_FILES})
