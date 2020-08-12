@@ -83,14 +83,14 @@ cd demo
 ./build-android-rk3399pro.sh
 ```
 
-Build output path: `install/rockx_rk3399pro_android`
+Build output path: `install/rockface_rk3399pro_android`
 
 ### Install
 
 Install to RK3399Pro device
 
 ```
-adb push install/rockx_rk3399pro_android /data/
+adb push install/rockface_rk3399pro_android /data/
 ```
 
 ## Run Demo

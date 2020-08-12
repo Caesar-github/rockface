@@ -24,7 +24,7 @@ cmake ../.. \
         -DCMAKE_ANDROID_STL_TYPE=gnustl_static \
         -DCMAKE_ANDROID_NDK=${ANDROID_NDK_PATH} \
         -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
-        -DCMAKE_INSTALL_PREFIX=${ROOT_PWD}/install/rockx_rk3399pro_android
+        -DCMAKE_INSTALL_PREFIX=${ROOT_PWD}/install/rockface_rk3399pro_android
 make -j4
 make install
 cd -

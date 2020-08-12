@@ -14,6 +14,7 @@ var menudata={children:[
 {text:"h",url:"functions.html#index_h"},
 {text:"i",url:"functions.html#index_i"},
 {text:"l",url:"functions.html#index_l"},
+{text:"o",url:"functions.html#index_o"},
 {text:"p",url:"functions.html#index_p"},
 {text:"r",url:"functions.html#index_r"},
 {text:"s",url:"functions.html#index_s"},
@@ -32,6 +33,7 @@ var menudata={children:[
 {text:"h",url:"functions_vars.html#index_h"},
 {text:"i",url:"functions_vars.html#index_i"},
 {text:"l",url:"functions_vars.html#index_l"},
+{text:"o",url:"functions_vars.html#index_o"},
 {text:"p",url:"functions_vars.html#index_p"},
 {text:"r",url:"functions_vars.html#index_r"},
 {text:"s",url:"functions_vars.html#index_s"},
@@ -45,7 +47,9 @@ var menudata={children:[
 {text:"全局定义",url:"globals.html",children:[
 {text:"全部",url:"globals.html",children:[
 {text:"r",url:"globals.html#index_r"}]},
-{text:"函数",url:"globals_func.html"},
+{text:"函数",url:"globals_func.html",children:[
+{text:"r",url:"globals_func.html#index_r"}]},
 {text:"类型定义",url:"globals_type.html"},
 {text:"枚举",url:"globals_enum.html"},
-{text:"枚举值",url:"globals_eval.html"}]}]}]}
+{text:"枚举值",url:"globals_eval.html",children:[
+{text:"r",url:"globals_eval.html#index_r"}]}]}]}]}

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>RockFace: /home/yhc/workspace/lion/rockx/RockFace/rockface/include/rockface_analyze.h 文件参考</title>
+<title>RockFace: /home/yhc/workspace/lion/rockx/RockX-dev/rockface/include/rockface_analyze.h 文件参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">RockFace
-   &#160;<span id="projectnumber">1.1.7</span>
+   &#160;<span id="projectnumber">1.3.1</span>
    </div>
   </td>
  </tr>
@@ -90,6 +90,14 @@ $(function() {
 <tr class="separator:a6eeb8dc38044d45bcdc7eefd2f36936a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0bc5e2ac555abdc1ace20ac36aaa1b74"><td class="memItemLeft" align="right" valign="top"><a class="el" href="rockface__type_8h.html#aea18e08829d7b19be892fcde6a75c025">rockface_ret_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rockface__analyze_8h.html#a0bc5e2ac555abdc1ace20ac36aaa1b74">rockface_align</a> (<a class="el" href="rockface__type_8h.html#afe8d9ff15ebb65abe41cb15a31518a62">rockface_handle_t</a> handle, <a class="el" href="structrockface__image__t.html">rockface_image_t</a> *in_img, <a class="el" href="structrockface__rect__t.html">rockface_rect_t</a> *in_box, <a class="el" href="structrockface__landmark__t.html">rockface_landmark_t</a> *in_landmark, <a class="el" href="structrockface__image__t.html">rockface_image_t</a> *out_img)</td></tr>
 <tr class="separator:a0bc5e2ac555abdc1ace20ac36aaa1b74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a258e6cc25e0f6ee0ec91d9f965552bb4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="rockface__type_8h.html#aea18e08829d7b19be892fcde6a75c025">rockface_ret_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rockface__analyze_8h.html#a258e6cc25e0f6ee0ec91d9f965552bb4">rockface_align2</a> (<a class="el" href="rockface__type_8h.html#afe8d9ff15ebb65abe41cb15a31518a62">rockface_handle_t</a> handle, <a class="el" href="structrockface__image__t.html">rockface_image_t</a> *in_img, <a class="el" href="structrockface__rect__t.html">rockface_rect_t</a> *in_box, <a class="el" href="structrockface__landmark__t.html">rockface_landmark_t</a> *in_landmark, <a class="el" href="structrockface__image__t.html">rockface_image_t</a> *out_img)</td></tr>
+<tr class="separator:a258e6cc25e0f6ee0ec91d9f965552bb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77a223d68449e6fe0102c6aed9f17764"><td class="memItemLeft" align="right" valign="top"><a class="el" href="rockface__type_8h.html#aea18e08829d7b19be892fcde6a75c025">rockface_ret_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rockface__analyze_8h.html#a77a223d68449e6fe0102c6aed9f17764">rockface_overexpose_detect</a> (<a class="el" href="structrockface__image__t.html">rockface_image_t</a> *in_face_img, int *out_isOverexpose)</td></tr>
+<tr class="separator:a77a223d68449e6fe0102c6aed9f17764"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9088822352f48bf8a610a090adaf2c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="rockface__type_8h.html#aea18e08829d7b19be892fcde6a75c025">rockface_ret_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rockface__analyze_8h.html#af9088822352f48bf8a610a090adaf2c0">rockface_blur</a> (<a class="el" href="structrockface__image__t.html">rockface_image_t</a> *in_face_img, float *blur)</td></tr>
+<tr class="separator:af9088822352f48bf8a610a090adaf2c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24d82832274284105fe67842a449284b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="rockface__type_8h.html#aea18e08829d7b19be892fcde6a75c025">rockface_ret_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rockface__analyze_8h.html#a24d82832274284105fe67842a449284b">rockface_brightlevel</a> (<a class="el" href="structrockface__image__t.html">rockface_image_t</a> *in_face_img, float *bright_level)</td></tr>
+<tr class="separator:a24d82832274284105fe67842a449284b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">函数说明</h2>
 <a id="a0bc5e2ac555abdc1ace20ac36aaa1b74"></a>
@@ -136,6 +144,64 @@ $(function() {
       </table>
 </div><div class="memdoc">
 <p>人脸矫正对齐</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>[in] 已初始化的Handle（调用 rockface_init_landmark(handle, 5) 函数初始化） </td></tr>
+    <tr><td class="paramname">in_img</td><td>[in] 输入图像（需要原始图像） </td></tr>
+    <tr><td class="paramname">in_box</td><td>[in] 人脸区域 </td></tr>
+    <tr><td class="paramname">in_landmark</td><td>[in] 人脸关键点（5点）。如果为NULL，函数内部会自己获取 </td></tr>
+    <tr><td class="paramname">out_img</td><td>[out] 对齐后的人脸图像（用完后需要调用 <a class="el" href="rockface__image_8h.html#a40138ec8591002c7212eb332b9fb2f51">rockface_image_release</a> 释放） </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd><a class="el" href="rockface__type_8h.html#aea18e08829d7b19be892fcde6a75c025">rockface_ret_t</a> </dd></dl>
+
+</div>
+</div>
+<a id="a258e6cc25e0f6ee0ec91d9f965552bb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a258e6cc25e0f6ee0ec91d9f965552bb4">&#9670;&nbsp;</a></span>rockface_align2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="rockface__type_8h.html#aea18e08829d7b19be892fcde6a75c025">rockface_ret_t</a> rockface_align2 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="rockface__type_8h.html#afe8d9ff15ebb65abe41cb15a31518a62">rockface_handle_t</a>&#160;</td>
+          <td class="paramname"><em>handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structrockface__image__t.html">rockface_image_t</a> *&#160;</td>
+          <td class="paramname"><em>in_img</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structrockface__rect__t.html">rockface_rect_t</a> *&#160;</td>
+          <td class="paramname"><em>in_box</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structrockface__landmark__t.html">rockface_landmark_t</a> *&#160;</td>
+          <td class="paramname"><em>in_landmark</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structrockface__image__t.html">rockface_image_t</a> *&#160;</td>
+          <td class="paramname"><em>out_img</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>人脸矫正对齐2</p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">handle</td><td>[in] 已初始化的Handle（调用 rockface_init_landmark(handle, 5) 函数初始化） </td></tr>
@@ -237,6 +303,80 @@ $(function() {
 
 </div>
 </div>
+<a id="af9088822352f48bf8a610a090adaf2c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9088822352f48bf8a610a090adaf2c0">&#9670;&nbsp;</a></span>rockface_blur()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="rockface__type_8h.html#aea18e08829d7b19be892fcde6a75c025">rockface_ret_t</a> rockface_blur </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structrockface__image__t.html">rockface_image_t</a> *&#160;</td>
+          <td class="paramname"><em>in_face_img</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>blur</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>人脸模糊检测</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in_face_img</td><td>[in] 输入对齐人脸图像 </td></tr>
+    <tr><td class="paramname">blur</td><td>[out] 输出为人脸模糊度，值越大越模糊，建议阈值为0.8 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd><a class="el" href="rockface__type_8h.html#aea18e08829d7b19be892fcde6a75c025">rockface_ret_t</a> </dd></dl>
+
+</div>
+</div>
+<a id="a24d82832274284105fe67842a449284b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24d82832274284105fe67842a449284b">&#9670;&nbsp;</a></span>rockface_brightlevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="rockface__type_8h.html#aea18e08829d7b19be892fcde6a75c025">rockface_ret_t</a> rockface_brightlevel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structrockface__image__t.html">rockface_image_t</a> *&#160;</td>
+          <td class="paramname"><em>in_face_img</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>bright_level</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>人脸亮度</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in_face_img</td><td>[in] 输入对齐人脸图像 </td></tr>
+    <tr><td class="paramname">bright_level</td><td>[out] 输出为人脸亮度等级，范围0.0～255.0，小于60为欠曝，大于210为过曝 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd><a class="el" href="rockface__type_8h.html#aea18e08829d7b19be892fcde6a75c025">rockface_ret_t</a> </dd></dl>
+
+</div>
+</div>
 <a id="af42582a2cebabaf62537f5f621f2f6e4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af42582a2cebabaf62537f5f621f2f6e4">&#9670;&nbsp;</a></span>rockface_init_analyzer()</h2>
 
@@ -288,11 +428,11 @@ $(function() {
         </tr>
       </table>
 </div><div class="memdoc">
-<p>初始化人脸关键点检测（对齐/关键点检测接口需要）</p>
+<p>初始化人脸关键点检测</p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle</td><td>[in] 需要初始化的Handle </td></tr>
-    <tr><td class="paramname">landmark_count</td><td>[in] 支持传入5/68 </td></tr>
+    <tr><td class="paramname">handle</td><td>需要初始化的Handle </td></tr>
+    <tr><td class="paramname">landmark_count</td><td>人脸关键点数（支持5/68/98点） </td></tr>
   </table>
   </dd>
 </dl>
@@ -337,7 +477,7 @@ $(function() {
         </tr>
       </table>
 </div><div class="memdoc">
-<p>检测人脸关键点（68点），结果可用于计算人脸角度</p>
+<p>检测人脸关键点（68点）</p>
 <p>68关键点如图1所示： </p><div class="image">
 <img src="res/face_landmark68.png" alt="face_landmark68.png"/>
 <div class="caption">
@@ -399,6 +539,43 @@ Figure 1 人脸68关键点示意图</div></div>
     <tr><td class="paramname">in_img</td><td>[in] 输入图像 </td></tr>
     <tr><td class="paramname">in_box</td><td>[in] 人脸区域 </td></tr>
     <tr><td class="paramname">out_landmark</td><td>[out] 人脸关键点结果 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd><a class="el" href="rockface__type_8h.html#aea18e08829d7b19be892fcde6a75c025">rockface_ret_t</a> </dd></dl>
+
+</div>
+</div>
+<a id="a77a223d68449e6fe0102c6aed9f17764"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77a223d68449e6fe0102c6aed9f17764">&#9670;&nbsp;</a></span>rockface_overexpose_detect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="rockface__type_8h.html#aea18e08829d7b19be892fcde6a75c025">rockface_ret_t</a> rockface_overexpose_detect </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structrockface__image__t.html">rockface_image_t</a> *&#160;</td>
+          <td class="paramname"><em>in_face_img</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>out_isOverexpose</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>人脸过曝检测</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in_face_img</td><td>[in] 输入对齐人脸图像 </td></tr>
+    <tr><td class="paramname">out_isOverexpose</td><td>[out] 输出是否过曝，1为过曝，0为非过曝 </td></tr>
   </table>
   </dd>
 </dl>

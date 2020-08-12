@@ -2,6 +2,7 @@ var searchData=
 [
   ['rockface_5fangle_5ft',['rockface_angle_t',['../rockface__type_8h.html#a297b0607ddb6ce3af3c9cdfebc05bb1c',1,'rockface_type.h']]],
   ['rockface_5fattribute_5ft',['rockface_attribute_t',['../rockface__type_8h.html#a0eebf9a88777fd4d979f54af45c3afe7',1,'rockface_type.h']]],
+  ['rockface_5fcolor_5ft',['rockface_color_t',['../rockface__type_8h.html#a4c2139007ed5905e726fdd49750f696b',1,'rockface_type.h']]],
   ['rockface_5fdet_5farray_5ft',['rockface_det_array_t',['../rockface__type_8h.html#a6549bbfe367d0f92756e9256ee792969',1,'rockface_type.h']]],
   ['rockface_5fdet_5fperson_5farray_5ft',['rockface_det_person_array_t',['../rockface__type_8h.html#af719248651cd620e4b5e0c7b615fc656',1,'rockface_type.h']]],
   ['rockface_5fdet_5ft',['rockface_det_t',['../rockface__type_8h.html#ace4ab381da040e5aa13ebce4fd942162',1,'rockface_type.h']]],

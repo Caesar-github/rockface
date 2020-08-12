@@ -117,6 +117,24 @@ rockface_ret_t rockface_align2(rockface_handle_t handle, rockface_image_t *in_im
  */
 rockface_ret_t rockface_overexpose_detect(rockface_image_t *in_face_img , int* out_isOverexpose );
 
+/**
+ * 人脸模糊检测
+ * 
+ * @param in_face_img [in] 输入对齐人脸图像
+ * @param blur [out] 输出为人脸模糊度，值越大越模糊，建议阈值为0.8
+ * @return @ref rockface_ret_t
+ */
+rockface_ret_t rockface_blur(rockface_image_t *in_face_img, float *blur);
+
+/**
+ * 人脸亮度
+ * 
+ * @param in_face_img [in] 输入对齐人脸图像
+ * @param bright_level [out] 输出为人脸亮度等级，范围0.0～255.0，小于60为欠曝，大于210为过曝
+ * @return @ref rockface_ret_t
+ */
+rockface_ret_t rockface_brightlevel(rockface_image_t *in_face_img, float *bright_level);
+
 #ifdef __cplusplus
 } //extern "C"
 #endif

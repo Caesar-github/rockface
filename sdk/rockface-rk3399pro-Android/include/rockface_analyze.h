@@ -30,16 +30,16 @@ extern "C" {
 rockface_ret_t rockface_init_analyzer(rockface_handle_t handle);
 
 /**
- * 初始化人脸关键点检测（对齐/关键点检测接口需要）
- *
- * @param handle [in] 需要初始化的Handle
- * @param landmark_count [in] 支持传入5/68
- * @return @ref rockface_ret_t
+ * 初始化人脸关键点检测
+ * 
+ * @param handle 需要初始化的Handle
+ * @param landmark_count 人脸关键点数（支持5/68/98点）
+ * @return @ref rockface_ret_t 
  */
 rockface_ret_t rockface_init_landmark(rockface_handle_t handle, int landmark_count);
 
 /**
- * 检测人脸关键点（68点），结果可用于计算人脸角度
+ * 检测人脸关键点（68点）
  *
  * 68关键点如图1所示：
  * @image html res/face_landmark68.png Figure 1 人脸68关键点示意图
@@ -96,6 +96,44 @@ rockface_ret_t rockface_attribute(rockface_handle_t handle, rockface_image_t *in
  */
 rockface_ret_t rockface_align(rockface_handle_t handle, rockface_image_t *in_img, rockface_rect_t *in_box, rockface_landmark_t *in_landmark, rockface_image_t *out_img);
 
+/**
+ * 人脸矫正对齐2
+ *
+ * @param handle [in] 已初始化的Handle（调用 @ref rockface_init_landmark(handle, 5) 函数初始化）
+ * @param in_img [in] 输入图像（需要原始图像）
+ * @param in_box [in] 人脸区域
+ * @param in_landmark [in] 人脸关键点（5点）。如果为NULL，函数内部会自己获取
+ * @param out_img [out] 对齐后的人脸图像（用完后需要调用 @ref rockface_image_release 释放）
+ * @return @ref rockface_ret_t
+ */
+rockface_ret_t rockface_align2(rockface_handle_t handle, rockface_image_t *in_img, rockface_rect_t *in_box, rockface_landmark_t *in_landmark, rockface_image_t *out_img);
+
+/**
+ * 人脸过曝检测
+ * 
+ * @param in_face_img [in] 输入对齐人脸图像
+ * @param out_isOverexpose [out] 输出是否过曝，1为过曝，0为非过曝
+ * @return @ref rockface_ret_t
+ */
+rockface_ret_t rockface_overexpose_detect(rockface_image_t *in_face_img , int* out_isOverexpose );
+
+/**
+ * 人脸模糊检测
+ * 
+ * @param in_face_img [in] 输入对齐人脸图像
+ * @param blur [out] 输出为人脸模糊度，值越大越模糊，建议阈值为0.8
+ * @return @ref rockface_ret_t
+ */
+rockface_ret_t rockface_blur(rockface_image_t *in_face_img, float *blur);
+
+/**
+ * 人脸亮度
+ * 
+ * @param in_face_img [in] 输入对齐人脸图像
+ * @param bright_level [out] 输出为人脸亮度等级，范围0.0～255.0，小于60为欠曝，大于210为过曝
+ * @return @ref rockface_ret_t
+ */
+rockface_ret_t rockface_brightlevel(rockface_image_t *in_face_img, float *bright_level);
 
 #ifdef __cplusplus
 } //extern "C"

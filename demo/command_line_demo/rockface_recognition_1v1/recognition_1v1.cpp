@@ -140,6 +140,7 @@ int main(int argc, char** argv) {
         printf("WARNING: can only try for a while without authorization\n");
     }
 
+    // init rockface handle
     ret = rockface_init_detector(face_handle);
     ret = rockface_init_landmark(face_handle, 5);
     ret = rockface_init_recognizer(face_handle);

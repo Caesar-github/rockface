@@ -82,8 +82,7 @@ int main(int argc, char** argv) {
         // face attribute
         rockface_attribute_t face_attr;
         ret = rockface_attribute(face_handle, &aligned_img, &face_attr);
-        // release aligned image first (avoid memory leak)
-        rockface_image_release(&aligned_img);
+
         if (ret != ROCKFACE_RET_SUCCESS) {
             printf("error rockface_attribute %d\n", ret);
             return -1;
@@ -103,6 +102,19 @@ int main(int argc, char** argv) {
             i, det_face->box.left, det_face->box.top, det_face->box.right, det_face->box.bottom, det_face->score, face_landmark.score,
             face_attr.age, face_attr.gender,
             face_angle.pitch, face_angle.roll, face_angle.yaw);
+
+        // face blur detect
+        float blur;
+        rockface_blur(&aligned_img, &blur);
+        printf("face blur valu is %f\n",blur);
+
+        //face bright level
+        float bright_level;
+        rockface_brightlevel(&aligned_img, &bright_level);
+        printf("face bright valu is %f\n",bright_level);
+
+        // release aligned image first (avoid memory leak)
+        rockface_image_release(&aligned_img);
     }
 
     // release image

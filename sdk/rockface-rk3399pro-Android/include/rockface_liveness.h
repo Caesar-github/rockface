@@ -20,7 +20,6 @@
 extern "C" {
 #endif
 
-
 /**
  * 初始化活体检测器
  * 
@@ -28,7 +27,6 @@ extern "C" {
  * @return @ref rockface_ret_t 
  */
 rockface_ret_t rockface_init_liveness_detector(rockface_handle_t handle);
-
 
 /**
  * 活体检测
@@ -40,6 +38,7 @@ rockface_ret_t rockface_init_liveness_detector(rockface_handle_t handle);
  * @return @ref rockface_ret_t
  */
 rockface_ret_t rockface_liveness_detect(rockface_handle_t handle, rockface_image_t* in_ir_img, rockface_rect_t *in_box, rockface_liveness_t *out_liveness_result);
+
 
 #ifdef __cplusplus
 } //extern "C"

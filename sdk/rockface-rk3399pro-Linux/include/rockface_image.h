@@ -74,6 +74,60 @@ rockface_ret_t rockface_image_convert(rockface_image_t *src, rockface_image_t *d
  */
 rockface_ret_t rockface_image_clarity(rockface_image_t *img, float *clarity);
 
+/**
+ * 获取图像的内存大小
+ * 
+ * @param img [in] Image
+ * @return @ref rockface_ret_t
+ */
+int rockface_image_size(rockface_image_t *img);
+
+/**
+ * 获取图像的区域子图
+ * 
+ * @param img [in] 输入图像
+ * @param box [in] 区域
+ * @param roi_img [out] 区域图像
+ * @return @ref rockface_ret_t
+ */
+rockface_ret_t rockface_image_roi(rockface_image_t *img, rockface_rect_t *box, rockface_image_t *roi_img);
+
+/**
+ * 在图像上绘制圆形(只支持RGB/GRAY8图像)
+ * 
+ * @param img [in] 输入图像
+ * @param point [in] 圆心坐标
+ * @param radius [in] 半径
+ * @param color [in] 颜色
+ * @param thickness [in] 线宽
+ * @return @ref rockface_ret_t
+ */
+rockface_ret_t rockface_image_draw_circle(rockface_image_t *img, rockface_point_t point, int radius, rockface_color_t color, int thickness);
+
+/**
+ * 在图像上绘制方形（只支持RGB/GRAY8图像）
+ * 
+ * @param img [in] 输入图像
+ * @param box [in] 区域
+ * @param color [in] 颜色
+ * @param thickness [in] 线宽
+ * @return @ref rockface_ret_t
+ */
+rockface_ret_t rockface_image_draw_rect(rockface_image_t *img, rockface_rect_t *box, rockface_color_t color, int thickness);
+
+/**
+ * 在图像上绘制文字（只支持RGB/GRAY8图像）
+ * 
+ * @param img [in] 输入图像
+ * @param text [in] 文字
+ * @param pt [in] 文字起始坐标
+ * @param color [in] 颜色
+ * @param thickness [in] 线宽
+ * @return @ref rockface_ret_t
+ */
+rockface_ret_t rockface_image_draw_text(rockface_image_t *img, const char *text, rockface_point_t pt,
+                                         rockface_color_t color, int thickness);
+
 #ifdef __cplusplus
 } //extern "C"
 #endif
