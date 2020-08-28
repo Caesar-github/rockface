@@ -39,6 +39,14 @@ rockface_ret_t rockface_init_analyzer(rockface_handle_t handle);
 rockface_ret_t rockface_init_landmark(rockface_handle_t handle, int landmark_count);
 
 /**
+ * 初始化人脸质量分析器
+ * 
+ * @param handle [in] 需要初始化的Handle
+ * @return @ref rockface_ret_t 
+ */
+rockface_ret_t rockface_init_quality(rockface_handle_t handle);
+
+/**
  * 检测人脸关键点（68点）
  *
  * 68关键点如图1所示：
@@ -134,6 +142,17 @@ rockface_ret_t rockface_blur(rockface_image_t *in_face_img, float *blur);
  * @return @ref rockface_ret_t
  */
 rockface_ret_t rockface_brightlevel(rockface_image_t *in_face_img, float *bright_level);
+
+/**
+ * 口罩检测
+ * 
+ * @param handle [in] 已初始化的Handle（调用 @ref rockface_init_analyzer 函数初始化）
+ * @param input_image [in] 原始图像
+ * @param face_box [in] 人脸检测结果
+ * @param out_score [out] 口罩分数
+ * @return @ref rockface_ret_t
+ */
+rockface_ret_t rockface_mask_classifier(rockface_handle_t handle, rockface_image_t* input_image, rockface_rect_t *face_box, float *out_score);
 
 #ifdef __cplusplus
 } //extern "C"
