@@ -98,7 +98,8 @@ adb push install/rockface_rk3399pro_android /data/
 ### rockface_analyze
 
 ```
-cd rockface_analyze_demo
+adb shell
+cd /data/rockface_rk3399pro_android/rockface_analyze_demo
 ./face_analyze /path/to/key.lic Aaron_Eckhart_0001.jpg
 ```
 

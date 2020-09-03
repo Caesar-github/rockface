@@ -127,12 +127,12 @@ rockface_ret_t rockface_overexpose_detect(rockface_image_t *in_face_img , int* o
 
 /**
  * 人脸模糊检测
- * 
- * @param in_face_img [in] 输入对齐人脸图像
- * @param blur [out] 输出为人脸模糊度，值越大越模糊，建议阈值为0.8
+ * @param in_img [in] 输入图像（需要原始图像）
+ * @param in_box [in] 人脸区域
+ * @param blur [out] 输出为人脸模糊度，值越大越模糊，建议阈值为0.82
  * @return @ref rockface_ret_t
  */
-rockface_ret_t rockface_blur(rockface_image_t *in_face_img, float *blur);
+rockface_ret_t rockface_blur(rockface_image_t *in_img, rockface_rect_t *in_box, float *blur);
 
 /**
  * 人脸亮度

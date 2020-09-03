@@ -13,7 +13,6 @@
 #include <memory.h>
 #include <sys/time.h>
 #include <stdlib.h>
-
 #include "rockface.h"
 
 int main(int argc, char** argv) {
@@ -51,6 +50,7 @@ int main(int argc, char** argv) {
         printf("WARNING: can only try for a while without authorization\n");
     }
 
+    ret = rockface_init_quality(face_handle);
     ret = rockface_init_detector(face_handle);
     ret = rockface_init_analyzer(face_handle);
     ret = rockface_init_landmark(face_handle, 5);
@@ -105,13 +105,18 @@ int main(int argc, char** argv) {
 
         // face blur detect
         float blur;
-        rockface_blur(&aligned_img, &blur);
+        rockface_blur(&input_image, &(det_face->box), &blur);
         printf("face blur valu is %f\n",blur);
 
         //face bright level
         float bright_level;
         rockface_brightlevel(&aligned_img, &bright_level);
         printf("face bright valu is %f\n",bright_level);
+
+        // face mask classify
+        float mask_score[2];
+        rockface_mask_classifier(face_handle, &input_image, &(det_face->box), mask_score);
+        printf("face mask score: %f %f\n", mask_score[0], mask_score[1]);
 
         // release aligned image first (avoid memory leak)
         rockface_image_release(&aligned_img);
