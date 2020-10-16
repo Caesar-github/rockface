@@ -46,7 +46,6 @@ rockface_ret_t rockface_init_detector2(rockface_handle_t handle, int version);
  */
 rockface_ret_t rockface_init_person_detector(rockface_handle_t handle);
 
-
 /**
  * 人脸检测
  * 
@@ -57,7 +56,6 @@ rockface_ret_t rockface_init_person_detector(rockface_handle_t handle);
  */
 rockface_ret_t rockface_detect(rockface_handle_t handle, rockface_image_t *in_img, rockface_det_array_t *face_array);
 
-
 /**
  * 人形检测
  * 
@@ -67,7 +65,6 @@ rockface_ret_t rockface_detect(rockface_handle_t handle, rockface_image_t *in_im
  * @return @ref rockface_ret_t
  */
 rockface_ret_t rockface_person_detect(rockface_handle_t handle, rockface_image_t *in_img, rockface_det_person_array_t *person_array);
-
 
 /**
  * 人脸跟踪，在连续视频帧时使用，会对当前场景的检测的结果分配跟踪ID，连续帧下对同一目标保持相同的跟踪ID
@@ -81,7 +78,6 @@ rockface_ret_t rockface_person_detect(rockface_handle_t handle, rockface_image_t
  */
 rockface_ret_t rockface_track(rockface_handle_t handle, rockface_image_t *in_img, int max_track_time,
         rockface_det_array_t* in_track_face, rockface_det_array_t* out_track_face);
-
 
 /**
  * 人脸跟踪，在连续视频帧时使用，会对当前场景的检测的结果分配跟踪ID，连续帧下对同一目标保持相同的跟踪ID

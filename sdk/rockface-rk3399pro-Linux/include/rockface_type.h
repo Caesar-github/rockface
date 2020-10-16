@@ -151,6 +151,15 @@ typedef struct rockface_angle_t {
 } rockface_angle_t;
 
 /**
+ * @brief 人脸识别算法版本
+ * 
+ */
+typedef enum {
+    ROCKFACE_RECOG_NORMAL = 0,  ///< 正常人脸识别
+    ROCKFACE_RECOG_MASK = 11    ///< 戴口罩人脸识别
+} rockface_recog_version;
+
+/**
  * @brief 表示人脸特征结果
  */
 typedef struct rockface_feature_t {
@@ -160,11 +169,20 @@ typedef struct rockface_feature_t {
 } rockface_feature_t;
 
 /**
+ * @brief 表示人脸特征结果
+ */
+typedef struct rockface_feature_float_t {
+    int version;            ///< 人脸识别算法版本
+    int len;                ///< 特征长度
+    float feature[512];     ///< 特征数据
+} rockface_feature_float_t;
+
+/**
  * @brief 表示人脸搜索结果
  */
 typedef struct rockface_search_result_t {
-    float similarity;               ///< 相似度
-    rockface_feature_t *feature;    ///< 特征指针
+    float similarity;           ///< 相似度
+    void *face_data;            ///< 自定义的人脸结构体指针
 } rockface_search_result_t;
 
 /**
@@ -209,6 +227,22 @@ typedef struct rockface_det_person_array_t {
     rockface_det_t person[128];      ///< 人形数组
 } rockface_det_person_array_t;
 
+/**
+ * @brief 人脸口罩检测结果
+ */
+typedef struct rockface_mask_t {
+    rockface_rect_t face_box;       ///< 人脸区域
+    float score;                    ///< 人脸分数
+    int has_mask;                   ///< 是否有佩戴口罩
+} rockface_mask_t;
+
+/**
+ * @brief 人脸口罩检测结果数组
+ */
+typedef struct rockface_mask_array_t {
+    int count;                                ///< 检测数量
+    rockface_mask_t face_masks[128];          ///< 人脸口罩
+} rockface_mask_array_t;
 
 #ifdef __cplusplus
 } //extern "C"

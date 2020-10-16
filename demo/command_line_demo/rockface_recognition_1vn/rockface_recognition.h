@@ -21,12 +21,19 @@ extern "C" {
 
 #define MAX_SIZE_NAME 64
 
-typedef struct face_data {
+typedef struct {
     rockface_feature_t feature;
     char name[MAX_SIZE_NAME];
 } face_data;
 
-rockface_ret_t run_face_recognize(rockface_handle_t face_handle, rockface_image_t *in_image, rockface_feature_t *out_feature);
+typedef struct {
+    rockface_feature_float_t feature;
+    char name[MAX_SIZE_NAME];
+} mask_face_data;
+
+rockface_ret_t run_face_detection(rockface_handle_t face_handle, rockface_image_t *in_image, rockface_det_t *out_face);
+
+rockface_ret_t run_get_face_feature(rockface_handle_t face_handle, rockface_image_t *in_image, rockface_det_t *face_det, rockface_feature_t *out_feature);
 
 #ifdef __cplusplus
 } //extern "C"

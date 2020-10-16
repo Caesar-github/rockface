@@ -47,6 +47,22 @@ rockface_ret_t rockface_init_landmark(rockface_handle_t handle, int landmark_cou
 rockface_ret_t rockface_init_quality(rockface_handle_t handle);
 
 /**
+ * 初始化口罩检测器
+ * 
+ * @param handle [in] 需要初始化的Handle
+ * @return @ref rockface_ret_t 
+ */
+rockface_ret_t rockface_init_mask_classifier(rockface_handle_t handle);
+
+/**
+ * 初始化口罩检测器(可以检测口罩人脸位置)
+ * 
+ * @param handle [in] 需要初始化的Handle
+ * @return @ref rockface_ret_t 
+ */
+rockface_ret_t rockface_init_mask_detector(rockface_handle_t handle);
+
+/**
  * 检测人脸关键点（68点）
  *
  * 68关键点如图1所示：
@@ -72,6 +88,32 @@ rockface_ret_t rockface_landmark(rockface_handle_t handle, rockface_image_t* in_
  */
 rockface_ret_t rockface_landmark5(rockface_handle_t handle, rockface_image_t* in_img, rockface_rect_t *in_box,
         rockface_landmark_t *out_landmark);
+
+/**
+ * 检测人脸关键点（106点），结果可用于计算人脸角度/人脸对齐
+ *
+ * @param handle [in] 已初始化的Handle（调用 @ref rockface_init_landmark(handle, 106) 函数初始化）
+ * @param in_img [in] 输入图像
+ * @param in_box [in] 人脸区域
+ * @param in_landmark [in] 人脸关键点(5点)结果
+ * @param out_landmark [out] 人脸关键点(106点)结果
+ * @param out_angle [out] 人脸角度
+ * @return @ref rockface_ret_t
+ */
+rockface_ret_t rockface_landmark106(rockface_handle_t handle, rockface_image_t* in_img, rockface_rect_t *in_box, 
+        rockface_landmark_t *in_landmark, rockface_landmark_t *out_landmark, rockface_angle_t *out_angle);
+
+/**
+ * 人脸误检过滤
+ *
+ * @param handle [in] 已初始化的Handle（调用 @ref rockface_init_landmark(handle, 5) 函数初始化）
+ * @param in_img [in] 输入图像
+ * @param in_box [in] 人脸区域
+ * @param is_false_face [out] 是否为人脸
+ * @return @ref rockface_ret_t
+ */
+rockface_ret_t rockface_face_filter(rockface_handle_t handle, rockface_image_t* in_img, rockface_rect_t *in_box,
+        int *is_false_face);
 
 /**
  * 获取人脸角度
@@ -146,13 +188,22 @@ rockface_ret_t rockface_brightlevel(rockface_image_t *in_face_img, float *bright
 /**
  * 口罩检测
  * 
- * @param handle [in] 已初始化的Handle（调用 @ref rockface_init_analyzer 函数初始化）
+ * @param handle [in] 已初始化的Handle（调用 @ref rockface_init_mask_classifier 函数初始化）
  * @param input_image [in] 原始图像
  * @param face_box [in] 人脸检测结果
  * @param out_score [out] 口罩分数
  * @return @ref rockface_ret_t
  */
 rockface_ret_t rockface_mask_classifier(rockface_handle_t handle, rockface_image_t* input_image, rockface_rect_t *face_box, float *out_score);
+
+/**
+ * 人脸口罩检测
+ * @param handle [in] 已初始化的Handle（调用 @ref rockface_init_mask_detector 函数初始化）
+ * @param in_img [in] 原始图像
+ * @param face_mask_array [out] 口罩检测结果
+ * @return @ref rockface_ret_t
+ */
+rockface_ret_t rockface_mask_detect(rockface_handle_t handle, rockface_image_t *in_img, rockface_mask_array_t *face_mask_array);
 
 #ifdef __cplusplus
 } //extern "C"

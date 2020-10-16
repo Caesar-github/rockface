@@ -54,6 +54,7 @@ int main(int argc, char** argv) {
     ret = rockface_init_detector(face_handle);
     ret = rockface_init_analyzer(face_handle);
     ret = rockface_init_landmark(face_handle, 5);
+    ret = rockface_init_landmark(face_handle, 106);
 
     // read image
     rockface_image_t input_image;
@@ -71,6 +72,11 @@ int main(int argc, char** argv) {
 
     for (int i = 0; i < face_array.count; i++) {
         rockface_det_t *det_face = &(face_array.face[i]);
+        //check is_face
+        int is_false_face;
+        ret = rockface_face_filter(face_handle, &input_image, &(det_face->box), &is_false_face);
+        printf("check false face: %d\n", is_false_face);
+
         // face align
         rockface_image_t aligned_img;
         memset(&aligned_img, 0, sizeof(rockface_image_t));
@@ -103,9 +109,15 @@ int main(int argc, char** argv) {
             face_attr.age, face_attr.gender,
             face_angle.pitch, face_angle.roll, face_angle.yaw);
 
+        rockface_angle_t face_angle_106;
+        rockface_landmark_t face_landmark_106;
+        ret = rockface_landmark106(face_handle, &input_image, &(det_face->box), &face_landmark, &face_landmark_106, &face_angle_106);
+        // output result
+        printf("106 landmark angle=(%f %f %f)\n", face_angle_106.pitch, face_angle_106.roll, face_angle_106.yaw);
+
         // face blur detect
         float blur;
-        rockface_blur(&input_image, &(det_face->box), &blur);
+        rockface_blur(&aligned_img, &blur);
         printf("face blur valu is %f\n",blur);
 
         //face bright level
@@ -114,9 +126,9 @@ int main(int argc, char** argv) {
         printf("face bright valu is %f\n",bright_level);
 
         // face mask classify
-        float mask_score[2];
-        rockface_mask_classifier(face_handle, &input_image, &(det_face->box), mask_score);
-        printf("face mask score: %f %f\n", mask_score[0], mask_score[1]);
+        float mask_score;
+        rockface_mask_classifier(face_handle, &input_image, &(det_face->box), &mask_score);
+        printf("face mask score: %f\n", mask_score);
 
         // release aligned image first (avoid memory leak)
         rockface_image_release(&aligned_img);

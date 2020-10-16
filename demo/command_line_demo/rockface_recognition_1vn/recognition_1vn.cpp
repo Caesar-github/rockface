@@ -21,12 +21,15 @@
 #include "face_db.h"
 #include "rockface_recognition.h"
 
-static int get_face_library(rockface_handle_t handle, const char *db_path) {
+face_data *_face_array = NULL;
+mask_face_data *_mask_face_array = NULL;
+
+static int get_face_library(rockface_handle_t handle, const char *db_path, int is_mask_face_recog) {
 
     sqlite3 *db = NULL;
 
     int _face_num = 0;
-    face_data *_face_array = NULL;
+
     rockface_ret_t rockface_ret = ROCKFACE_RET_SUCCESS;
     int ret = 0;
 
@@ -41,15 +44,31 @@ static int get_face_library(rockface_handle_t handle, const char *db_path) {
     _face_array = (face_data *)malloc(_face_num*sizeof(face_data));
     ret = get_all_face(db, _face_array, _face_num);
     if (ret < 0) {
-        printf("error get_face_count %d\n", ret);
+        printf("error get_all_face %d\n", ret);
         goto error;
     }
 
-    rockface_ret = rockface_face_library_init(handle, _face_array, _face_num, sizeof(face_data), 0);
+    rockface_ret = rockface_face_library_init2(handle, ROCKFACE_RECOG_NORMAL, _face_array, _face_num, sizeof(face_data), 0);
     if (rockface_ret != ROCKFACE_RET_SUCCESS) {
         printf("error rockface_face_library_init %d\n", rockface_ret);
         ret = -1;
         goto error;
+    }
+
+    if (is_mask_face_recog == 1) {
+        _mask_face_array = (mask_face_data *)malloc(_face_num*sizeof(mask_face_data));
+        ret = get_all_mask_face(db, _mask_face_array, _face_num);
+        if (ret < 0) {
+            printf("error get_all_mask_face %d\n", ret);
+            goto error;
+        }
+
+        rockface_ret = rockface_face_library_init2(handle, ROCKFACE_RECOG_MASK, _mask_face_array, _face_num, sizeof(mask_face_data), 0);
+        if (rockface_ret != ROCKFACE_RET_SUCCESS) {
+            printf("error rockface_face_library_init %d\n", rockface_ret);
+            ret = -1;
+            goto error;
+        }
     }
 
 error:
@@ -68,27 +87,32 @@ int main(int argc, char** argv) {
     char *licence_path = NULL;
     char *img_path = NULL;
     char *db_path = NULL;
+    int is_mask_face_recog = 0;
 
     if(argc != 3 && argc != 4 ){
         printf("\nUsage:\n");
-        printf("\trecognition_1vn <image path> <database path>\n");
+        printf("\trecognition_1vn <image path> <database path> <is_mask_face_recog>\n");
         printf("or\n");
-        printf("\trecognition_1vn <image path> <database path> <licence file>\n");
+        printf("\trecognition_1vn <image path> <database path> <is_mask_face_recog> <licence file>\n");
         return -1;
     }
 
     img_path = argv[1];
     db_path = argv[2];
+    is_mask_face_recog = atoi(argv[3]);
+
     printf("image path: %s\n", img_path);
     printf("create database path: %s\n", db_path);
+    printf("mask face recog: %d\n", is_mask_face_recog);
 
-    if (argc == 4) {
-        licence_path = argv[3];
+    if (argc == 5) {
+        licence_path = argv[4];
         printf("licence path: %s\n", licence_path);
     }
 
     rockface_handle_t face_handle = rockface_create_handle();
     rockface_feature_t face_feature;
+    rockface_feature_float_t mask_face_feature;
     rockface_image_t in_img;
     rockface_search_result_t search_result;
     rockface_ret_t rockface_ret;
@@ -107,33 +131,73 @@ int main(int argc, char** argv) {
     ret = rockface_init_detector(face_handle);
     ret = rockface_init_landmark(face_handle, 5);
     ret = rockface_init_recognizer(face_handle);
+    if (is_mask_face_recog == 1) {
+        ret = rockface_init_mask_recognizer(face_handle);
+        ret = rockface_init_mask_classifier(face_handle);
+    }
 
     // load database
-    int db_ret = get_face_library(face_handle, db_path);
+    int db_ret = get_face_library(face_handle, db_path, is_mask_face_recog);
     if (db_ret != 0) {
         printf("get face library error\n");
         goto error;
     }
 
     rockface_image_read(img_path, &in_img, 1);
-    ret = run_face_recognize(face_handle, &in_img, &face_feature);
+
+    // run face detection
+    rockface_det_t face_det;
+    ret = run_face_detection(face_handle, &in_img, &face_det);
     if (ret != ROCKFACE_RET_SUCCESS) {
-        printf("get face feature error");
+        printf("run face detection error");
         goto error;
     }
 
-    gettimeofday(&tv, NULL);
-    printf("%ld before search\n", (tv.tv_sec * 1000 + tv.tv_usec/1000));
+    if (is_mask_face_recog == 1) {
+        float mask_score;
+        ret = rockface_mask_classifier(face_handle, &in_img, &(face_det.box), &mask_score);
+        if (ret != ROCKFACE_RET_SUCCESS) {
+            printf("rockface_mask_classifier error");
+            goto error;
+        }
 
-    rockface_ret = rockface_feature_search(face_handle, &face_feature, 0.7, &search_result);
-    
-    gettimeofday(&tv, NULL);
-    printf("%ld after search\n", (tv.tv_sec * 1000 + tv.tv_usec/1000));
+        printf("mask_score=%f\n", mask_score);
 
-    if (rockface_ret != ROCKFACE_RET_SUCCESS) {
+        if (mask_score < 0.5) {
+            ret = run_get_face_feature(face_handle, &in_img, &face_det, &face_feature);
+            if (ret != ROCKFACE_RET_SUCCESS) {
+                printf("get face feature error");
+                goto error;
+            }
+            rockface_ret = rockface_feature_search(face_handle, &face_feature, 1.0, &search_result);
+        } else {
+            ret = rockface_mask_feature_extract(face_handle, &in_img, &face_det.box, 1, &mask_face_feature);
+            if (ret != ROCKFACE_RET_SUCCESS) {
+                printf("get face feature error");
+                goto error;
+            }
+            rockface_ret = rockface_feature_search(face_handle, (rockface_feature_t *)&mask_face_feature, 1.0, &search_result);
+        }
+    } else {
+        ret = run_get_face_feature(face_handle, &in_img, &face_det, &face_feature);
+        if (ret != ROCKFACE_RET_SUCCESS) {
+            printf("get face feature error");
+            goto error;
+        }
+        rockface_ret = rockface_feature_search(face_handle, &face_feature, 1.0, &search_result);
+    }
+
+    if (rockface_ret == ROCKFACE_RET_SUCCESS) {
+        char *name = NULL;
+        if (((face_data *)search_result.face_data)->feature.version == ROCKFACE_RECOG_MASK) {
+            name = ((mask_face_data *)search_result.face_data)->name;
+        } else {
+            name = ((face_data *)search_result.face_data)->name;
+        }
+        printf("search result: name=%s dist=%f\n", name, search_result.similarity);
+    } else {
         printf("error rockface_feature_search %d\n", rockface_ret);
     }
-    printf("search result: name=%s dist=%f\n", ((face_data *)search_result.feature)->name, search_result.similarity);
 
 error:
     rockface_image_release(&in_img);

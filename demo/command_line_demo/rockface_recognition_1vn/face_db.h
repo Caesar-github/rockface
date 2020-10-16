@@ -31,6 +31,10 @@ int get_face_count(sqlite3* db, int *face_num);
 
 int insert_face(sqlite3* db, face_data* face);
 
+int get_all_mask_face(sqlite3* db, mask_face_data* face_array, int face_num);
+
+int insert_mask_face(sqlite3* db, mask_face_data* face);
+
 #ifdef __cplusplus
 } //extern "C"
 #endif
