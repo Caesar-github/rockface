@@ -39,6 +39,7 @@ endif()
 
 if(${WITH_FACE_LANDMARK})
     install(FILES ${ROCKFACE_DATA_DIR}/face_landmark5.data DESTINATION lib)
+    install(FILES ${ROCKFACE_DATA_DIR}/face_landmarks106.data DESTINATION lib)
 endif()
 
 if(${WITH_FACE_ATTRIBUTE})
