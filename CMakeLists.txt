@@ -53,6 +53,22 @@ if(${WITH_OBJECT_DETECTION})
     install(FILES ${ROCKFACE_DATA_DIR}/object_detection.data DESTINATION lib)
 endif()
 
+if(${WITH_MASK_CLASSIFY})
+    install(FILES ${ROCKFACE_DATA_DIR}/face_mask_classify.data DESTINATION lib)
+endif()
+
+if(${WITH_MASK_LANDMARKS})
+    install(FILES ${ROCKFACE_DATA_DIR}/face_mask_landmarks.data DESTINATION lib)
+endif()
+
+if(${WITH_MASK_RECOGNITION})
+    install(FILES ${ROCKFACE_DATA_DIR}/face_mask_recognition.data DESTINATION lib)
+endif()
+
+if(${WITH_MASKS_DETECTION})
+    install(FILES ${ROCKFACE_DATA_DIR}/face_masks_detection.data DESTINATION lib)
+endif()
+
 else()
     install(DIRECTORY ${ROCKFACE_DATA_DIR}/ DESTINATION lib)
 endif()
